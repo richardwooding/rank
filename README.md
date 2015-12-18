@@ -42,6 +42,16 @@ You can find the distributions at the following locations:
 
     build/distributions/rank.tar
     build/distributions/rank.zip
+    
+The distribution file layout is as follows
+    
+    rank/
+    rank/lib/
+    rank/lib/rank-0.1.0.jar
+    rank/lib/commons-cli-1.3.1.jar
+    rank/bin/
+    rank/bin/rank
+    rank/bin/rank.bat
 
 
 ## Installation ##
@@ -79,12 +89,13 @@ Execute the following command
     
 The following output will be displayed
     
-    1. Tarantulas 6
-    2. Lions 5
-    3. FC Awesome 1
-    4. Snakes 1
-    5. Grouches 0
+    1. Tarantulas 6 pts
+    2. Lions 5 pts
+    3. FC Awesome 1 pt
+    4. Snakes 1 pt
+    5. Grouches 0 pts
 
-
+**Please note the following:** *Teams are sorted in descending order of points, but alphabetically in the case of a tie.*
+**Additionally:** *Please note the pattern:* 0 *pts* 1 *pt* 2 *pts* 3 *pts* ...
     
     
