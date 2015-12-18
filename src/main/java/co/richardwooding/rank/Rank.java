@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 /**
+ * Keeps track of rankings of teams in a league
+ *
  * Created by richardwooding on 2015/12/15.
  */
 public class Rank {

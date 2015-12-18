@@ -1,6 +1,8 @@
 package co.richardwooding.rank;
 
 /**
+ * Represents the score of one team, a Result combines to scores in one match
+ *
  * Created by richardwooding on 2015/12/15.
  */
 public class Score {
