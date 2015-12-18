@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public class RankCommand {
 
+  boolean displayHelp = false;
   boolean configured = false;
   boolean inputProcessed = false;
   private Optional<File> inputFile = Optional.empty();
@@ -22,14 +23,19 @@ public class RankCommand {
 
       try {
           // parse the command line arguments
-          CommandLine line = parser.parse( buildCommandLineOptions(), args );
+          Options options = buildCommandLineOptions();
+          CommandLine line = parser.parse( options, args );
 
           RankCommand command = new RankCommand();
           command.configure(line);
 
           if (command.isConfigured()) {
-              command.processInput();
-              command.sendOutput();
+              if (command.isDisplayHelp()) {
+                  command.displayHelp(options);
+              } else {
+                  command.processInput();
+                  command.sendOutput();
+              }
           }
 
       }
@@ -50,16 +56,24 @@ public class RankCommand {
       options.addOption("help", "Print this message");
       options.addOption(Option.builder("inputFile").hasArg().desc("Input file (Defaults to STDIN)").build());
       options.addOption(Option.builder("outputFile").hasArg().desc("Output file (Defaults to STDOUT)").build());
-      options.addOption("haltOnError", false, "Halt on error (Default to false)");
+      options.addOption("haltOnError", "Halt on error, does not halt by default");
       return options;
   }
 
   void configure(CommandLine line) {
-      if (line.hasOption("inputFile")) {
-          inputFile = Optional.of(new File(line.getOptionValue("inputFile")));
+      if (line.hasOption("help")) {
+          displayHelp = true;
       }
-      if (line.hasOption("outputFile")) {
-          outputFile = Optional.of(new File(line.getOptionValue("outputFile")));
+      if (!displayHelp) {
+          if (line.hasOption("inputFile")) {
+              inputFile = Optional.of(new File(line.getOptionValue("inputFile")));
+          }
+          if (line.hasOption("outputFile")) {
+              outputFile = Optional.of(new File(line.getOptionValue("outputFile")));
+          }
+          if (line.hasOption("haltOnError")) {
+              haltOnError = true;
+          }
       }
       configured = true;
   }
@@ -101,6 +115,10 @@ public class RankCommand {
         return inputProcessed;
     }
 
+    public boolean isDisplayHelp() {
+        return displayHelp;
+    }
+
     private Reader buildInputReader() {
         if (inputFile.isPresent()) {
             try {
@@ -123,6 +141,11 @@ public class RankCommand {
         } else {
             return new PrintWriter(System.out);
         }
+    }
+
+    private void displayHelp(Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp( "rank", options );
     }
 
 

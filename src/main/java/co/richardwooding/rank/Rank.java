@@ -28,7 +28,7 @@ public class Rank {
     }
 
     public Stream<Map.Entry<String, Integer>> getSortedRankings() {
-        return rankings.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed());
+        return rankings.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed().thenComparing(Map.Entry.<String, Integer>comparingByKey()));
     }
 
 }
