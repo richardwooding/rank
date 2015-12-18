@@ -21,20 +21,20 @@ Use the following commands to clone the git repository and change to the **rank*
 
     cd ~
     mkdir projects
-    git clone git@github.com:richardwooding/rank.git
+    git clone https://github.com/richardwooding/rank.git
     cd rank
 
 ## Running tests ##
 
 Invoke the *test* target of the grails build.
 
-    ./grailsw test
+    ./gradlew test
 
 ## Building distributions ##
 
 Invoke the *assemble* target of the grails build
 
-    ./grailsw assemble
+    ./gradlew assemble
     
 Rank's build process is built on upon the [Gradle Application Plugin](https://docs.gradle.org/current/userguide/application_plugin.html)
 
@@ -51,7 +51,7 @@ Unpack distribution
     cd ~
     tar xvf projects/build/distributions/rank.tar
     
-Add to path    
+Add rank command to path    
 
     export PATH=$PATH:$HOME/rank/bin
     
@@ -79,7 +79,11 @@ Execute the following command
     
 The following output will be displayed
     
-    
+    1. Tarantulas 6
+    2. Lions 5
+    3. FC Awesome 1
+    4. Snakes 1
+    5. Grouches 0
 
 
     
