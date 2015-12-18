@@ -100,7 +100,7 @@ public class RankCommand {
       if (isInputProcessed()) {
         try (PrintWriter writer = buildPrintWriter()) {
             rank.getSortedRankings().forEachOrdered(entry -> {
-                writer.printf("%d. %s %d%n", position++, entry.getKey(), entry.getValue());
+                writer.printf("%d. %s %d %s%n", position++, entry.getKey(), entry.getValue(), entry.getValue() == 1 ? "pt" : "pts");
             });
         }
       }
